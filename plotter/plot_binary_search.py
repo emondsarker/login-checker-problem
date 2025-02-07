@@ -21,7 +21,7 @@ for i in range(DATASET_STEP, DATASET_LIMIT, DATASET_STEP):
             raise Exception("Dataset is empty.")
         
         times = []
-        for _ in range(10):
+        for _ in range(100):
             target = dataset[random.randint(0, len(dataset) - 1)]
             start_time = time.time()
             result = binary_search(dataset, target)
