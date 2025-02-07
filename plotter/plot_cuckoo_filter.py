@@ -15,24 +15,23 @@ runtime_values = []
 for i in range(DATASET_STEP, DATASET_LIMIT, DATASET_STEP):
     with open('dataset.txt', 'r') as file:
         lines = [line.strip() for line in file.readlines()]
-        print(i)
+
         dataset = lines[:i]
         if(len(dataset) == 0):
             raise Exception("Dataset is empty.")
         
-        # Create a new filter for each dataset size
+
         cuckoo_filter = CuckooFilter(capacity=len(dataset))
         
-        # Insert all items first
+
         for item in dataset:
             cuckoo_filter.insert(item)
         
         times = []
         for _ in range(10):
-            # Test lookup performance
             target = dataset[random.randint(0, len(dataset) - 1)]
             start_time = time.time()
-            result = target in cuckoo_filter  # Using membership testing
+            result = target in cuckoo_filter
             end_time = time.time()
             run_time = end_time - start_time
             times.append(run_time)        
