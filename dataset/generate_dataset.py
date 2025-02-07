@@ -1,7 +1,7 @@
 from faker import Faker
 import uuid
 import argparse
-from dataset_limit import DATASET_LIMIT
+from dataset_constants import DATASET_LIMIT
 
 def generate_username():
     fake = Faker()
