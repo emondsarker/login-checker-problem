@@ -15,7 +15,7 @@ runtime_values = []
 for i in range(DATASET_STEP, DATASET_LIMIT, DATASET_STEP):
     with open('dataset.txt', 'r') as file:
         lines = [line.strip() for line in file.readlines()]
-        print(i)
+
         dataset = lines[:i]
         if(len(dataset) == 0):
             raise Exception("Dataset is empty.")
