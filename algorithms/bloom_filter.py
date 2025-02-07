@@ -1,22 +1,32 @@
-def bloom_filter(arr, target):
-    bit_array = [0] * (len(arr) * 10)
-    
-    def hash1(item):
-        return hash(item) % len(bit_array)
-    
-    def hash2(item):
-        return hash(item * 2) % len(bit_array)
-    
-    def hash3(item):
-        return hash(item * 3) % len(bit_array)
-    
-    for i, item in enumerate(arr):
-        bit_array[hash1(item)] = 1
-        bit_array[hash2(item)] = 1
-        bit_array[hash3(item)] = 1
+class BloomFilter:
+    def __init__(self, arr):
+        self.size = len(arr) * 10
+        self.bit_array = [0] * self.size
         
-    if bit_array[hash1(target)] and bit_array[hash2(target)] and bit_array[hash3(target)]:
-        for i, item in enumerate(arr):
-            if item == target:
-                return i
-    return -1
+        for item in arr:
+            self._add(item)
+    
+    def _hash1(self, item):
+        return hash(item) % self.size
+    
+    def _hash2(self, item):
+        return hash(item * 2) % self.size
+    
+    def _hash3(self, item):
+        return hash(item * 3) % self.size
+    
+    def _add(self, item):
+        self.bit_array[self._hash1(item)] = 1
+        self.bit_array[self._hash2(item)] = 1
+        self.bit_array[self._hash3(item)] = 1
+    
+    def search(self, target):
+        if (self.bit_array[self._hash1(target)] and 
+            self.bit_array[self._hash2(target)] and 
+            self.bit_array[self._hash3(target)]):
+            return 1
+        return -1
+
+def bloom_filter(arr, target):
+    filter = BloomFilter(arr)
+    return filter.search(target)
