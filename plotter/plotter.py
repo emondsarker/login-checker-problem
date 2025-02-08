@@ -11,7 +11,7 @@ class Plotter:
         plt.plot(n_values, runtime_values, marker='o', color='b')
         plt.xlabel(x_label)
         plt.ylabel('Runtime (s)')
-        plt.title(f'{y_value} vs. Runtime')
+        plt.title(f'{file_name} - Runtime Analysis')
         plt.grid()
         plt.savefig(f'{self.plot_directory}/{file_name}.png')
         plt.close()
