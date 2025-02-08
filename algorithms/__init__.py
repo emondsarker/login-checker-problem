@@ -1,3 +1,3 @@
-from .linear_search import linear_search
+from .linear_search import LinearSearch
 
-__all__ = ['linear_search']
+__all__ = ['LinearSearch']

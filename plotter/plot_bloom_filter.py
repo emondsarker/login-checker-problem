@@ -45,3 +45,9 @@ plotter.generate_line_graph(
     runtime_values, 
     'bloom_filter'
 )
+
+# Save the n values and runtime values to a file
+
+with open('bloom_filter_runtime_data.txt', 'w') as file:
+    for n, runtime in zip(n_values, runtime_values):
+        file.write(f"{n},{runtime}\n")

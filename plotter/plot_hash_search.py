@@ -46,3 +46,10 @@ plotter.generate_line_graph(
     runtime_values, 
     'hash_search'
 )
+
+
+# Save the n values and runtime values to a file
+
+with open('hash_search_runtime_data.txt', 'w') as file:
+    for n, runtime in zip(n_values, runtime_values):
+        file.write(f"{n},{runtime}\n")
